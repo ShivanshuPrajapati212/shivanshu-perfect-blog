@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"shivanshu-perfect-blog/db"
 )
 
 func createPost(w http.ResponseWriter, r *http.Request) {
@@ -20,5 +22,12 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	content := string(body)
 
-	fmt.Print(content)
+	err = db.WritePost(content)
+	if err != nil {
+		fmt.Println(err)
+		http.Error(w, "Well, something wrong in my db", http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprint(w, "Post Created Successful")
 }
