@@ -14,6 +14,7 @@ func StartServer() {
 	})
 
 	http.HandleFunc("/get-body", createPost)
+	http.HandleFunc("/get-all-posts", getAllPosts)
 
 	if err := http.ListenAndServe(":2121", nil); err != nil {
 		log.Fatal("Error running server: ", err)

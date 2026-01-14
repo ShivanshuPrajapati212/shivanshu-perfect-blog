@@ -31,3 +31,21 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprint(w, "Post Created Successful")
 }
+
+func getAllPosts(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Get the hell out of here, POST only.", http.StatusMethodNotAllowed)
+		return
+	}
+
+	posts, err := db.GetAllPosts()
+	if err != nil {
+		http.Error(w, "okay, my db crashed", http.StatusInternalServerError)
+		return
+
+	}
+
+	for _, v := range posts {
+		fmt.Fprint(w, v+"\n")
+	}
+}
