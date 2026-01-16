@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#win-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-contents: center;
+}
+
+.container {
+    display: grid;
+    align-items: center;
+    justify-contents: center;
+}
+
+.tile {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-contents: center;
+}
